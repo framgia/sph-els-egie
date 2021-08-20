@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Activity = ({ title }) => {
+const Activity = () => {
   return (
     <div className='border-2 p-6'>
-      <div className='text-xl font-semibold border-b-2 pb-3'>{title}</div>
+      <div className='text-xl font-semibold border-b-2 pb-3'>Activities</div>
       <div className='ui divided items'>
         <div className='item'>
           <div className='ui tiny image'>
@@ -12,8 +12,8 @@ const Activity = ({ title }) => {
           </div>
           <div className='middle aligned content'>
             <div>
-              <Link to='/'>You</Link> learned 20 of 20 wrds in{' '}
-              <Link href='/'>Basic 500</Link>
+              <Link to='/'>You</Link> learned 20 of 20 words in{' '}
+              <Link to='/'>Basic 500</Link>
             </div>
             <div>2 days ago</div>
           </div>
@@ -25,8 +25,8 @@ const Activity = ({ title }) => {
           </div>
           <div className='middle aligned content'>
             <div>
-              <Link to='/'>You</Link> learned 20 of 20 wrds in{' '}
-              <Link href='/'>Basic 500</Link>
+              <Link to='/'>You</Link> learned 20 of 20 words in{' '}
+              <Link to='/'>Basic 500</Link>
             </div>
             <div>2 days ago</div>
           </div>
@@ -38,8 +38,8 @@ const Activity = ({ title }) => {
           </div>
           <div className='middle aligned content'>
             <div>
-              <Link to='/'>You</Link> learned 20 of 20 wrds in{' '}
-              <Link href='/'>Basic 500</Link>
+              <Link to='/'>You</Link> learned 20 of 20 words in{' '}
+              <Link to='/'>Basic 500</Link>
             </div>
             <div>2 days ago</div>
           </div>
@@ -51,8 +51,8 @@ const Activity = ({ title }) => {
           </div>
           <div className='middle aligned content'>
             <div>
-              <Link to='/'>You</Link> learned 20 of 20 wrds in{' '}
-              <Link href='/'>Basic 500</Link>
+              <Link to='/'>You</Link> learned 20 of 20 words in{' '}
+              <Link to='/'>Basic 500</Link>
             </div>
             <div>2 days ago</div>
           </div>
