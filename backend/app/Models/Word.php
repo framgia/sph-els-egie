@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Word extends Model
 {
     use HasFactory;
+
+    public function quiz()
+    {
+        return $this->belongsTo(Quiz::class);
+    }
+
+    public function choice()
+    {
+        return $this->hasMany(Choice::class);
+    }
 }
