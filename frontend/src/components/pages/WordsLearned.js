@@ -1,23 +1,19 @@
 import React from 'react';
-import Activity from '../Activity';
 import DashboardDetail from '../DashboardDetail';
+import WordsLog from '../WordsLog';
 
-const Dashboard = () => {
+const WordsLearned = () => {
   return (
     <div className='ui grid'>
       <div className='four wide column'>
-        <DashboardDetail
-          path='/words-learned'
-          word='Learned 20 words'
-          lesson='Learned 5 lessons'
-        />
+        <DashboardDetail path='/words-learned' word='Learned 20 words' />
       </div>
 
       <div className='twelve wide column'>
-        <Activity/>
+        <WordsLog />
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default WordsLearned;

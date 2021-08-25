@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import './App.css';
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
         E-learning System
       </Link>
       <div className='right menu'>
-        <Link to='/' className='item text-lg middle'>
+        <Link to='/categories' className='item text-lg middle'>
           Categories
         </Link>
         <Link to='/' className='item text-lg'>

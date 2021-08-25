@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Choice extends Model
 {
     use HasFactory;
+
+    public function word()
+    {
+        return $this->belongsTo(Word::class);
+    }
 }
