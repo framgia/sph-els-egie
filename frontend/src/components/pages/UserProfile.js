@@ -1,11 +1,19 @@
-import React from 'react'
+import React from 'react';
+import Activity from '../Activity';
+import UserDetail from '../UserDetail';
 
 const UserProfile = () => {
   return (
-    <div>
-      User Profile
-    </div>
-  )
-}
+    <div className='ui grid'>
+      <div className='four wide column'>
+        <UserDetail />
+      </div>
 
-export default UserProfile
+      <div className='twelve wide column'>
+        <Activity />
+      </div>
+    </div>
+  );
+};
+
+export default UserProfile;

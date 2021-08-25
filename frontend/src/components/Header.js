@@ -15,8 +15,8 @@ const Header = () => {
         <Link to='/user-list' className='item text-lg'>
           Users
         </Link>
-        <Link to='/' className='item text-lg'>
-          Link3
+        <Link to='/user-profile' className='item text-lg'>
+          User Profile
         </Link>
       </div>
     </div>
