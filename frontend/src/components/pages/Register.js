@@ -44,7 +44,7 @@ const Register = () => {
   };
 
   return (
-    <div className='pt-52'>
+    <div className='pt-40'>
       <div className='ui center aligned grid'>
         <div className='seven wide column'>
           <h2 className='ui blue header'>

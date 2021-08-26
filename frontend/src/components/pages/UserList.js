@@ -7,7 +7,7 @@ const UserList = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/api/user-list');
+    const response = await axios.get('/api/user-list');
 
     if (response.data.status === 200) {
       setUsers(response.data.users);
