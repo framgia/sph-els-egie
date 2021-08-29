@@ -66,11 +66,21 @@ class AuthController extends Controller
 
                 return response()->json([
                     'status' => 200,
-                    'username' => $user->name,
+                    'name' => $user->name,
                     'token' => $token,
-                    'message' => 'Logged In Successfully'
+                    'message' => 'Logged In Successfully',
+                    'id' => $user->id,
                 ]);
             }
         }
+    }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Logged Out Successfully'
+        ]);
     }
 }

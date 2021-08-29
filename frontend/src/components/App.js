@@ -16,6 +16,11 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 
 axios.defaults.withCredentials = true;
+axios.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('auth_token');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+});
 
 const App = () => {
   return (
@@ -23,15 +28,17 @@ const App = () => {
       <Router>
         <Header />
         <Switch>
-          <div className='ui container'>
-            <Route path='/' exact component={Dashboard} />
-            <Route path='/register' exact component={Register} />
-            <Route path='/login' exact component={Login} />
-            <Route path='/words-learned' component={WordsLearned}></Route>
-            <Route path='/categories' component={Category}></Route>
-            <Route path='/user-list' component={UserList}></Route>
-            <Route path='/user-profile/:id' component={UserProfile}></Route>
-          </div>
+          <React.Fragment>
+            <div className='ui container'>
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/register' exact component={Register} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/words-learned' component={WordsLearned}></Route>
+              <Route path='/categories' component={Category}></Route>
+              <Route path='/user-list' component={UserList}></Route>
+              <Route path='/user-profile/:id' component={UserProfile}></Route>
+            </div>
+          </React.Fragment>
         </Switch>
       </Router>
     </div>
