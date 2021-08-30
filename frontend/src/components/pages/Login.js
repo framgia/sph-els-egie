@@ -29,8 +29,8 @@ const Login = () => {
     axios.post(`api/login`, data).then((res) => {
       if (res.data.status === 200) {
         localStorage.setItem('auth_token', res.data.token);
-        localStorage.setItem('auth_name', res.data.username);
-        history.push('/');
+        localStorage.setItem('auth_name', res.data.name);
+        history.push(`/user-profile/${res.data.id}`);
       } else if (res.data.status === 401) {
         setinvalidMessage(res.data.message);
       } else {

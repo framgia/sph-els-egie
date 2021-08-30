@@ -36,7 +36,8 @@ const App = () => {
               <Route path='/words-learned' component={WordsLearned}></Route>
               <Route path='/categories' component={Category}></Route>
               <Route path='/user-list' component={UserList}></Route>
-              <Route path='/user-profile/:id' component={UserProfile}></Route>
+              <Route path='/user-profile/:userId' component={UserProfile}></Route>
+              <Route path='/update-profile/:userId' component={UserProfile}></Route>
             </div>
           </React.Fragment>
         </Switch>

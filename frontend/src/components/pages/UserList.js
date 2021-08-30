@@ -22,7 +22,7 @@ const UserList = () => {
   const userlist_HTMLTABLE = users.map((user) => (
     <tr key={user.id}>
       <td data-label='Username'>
-        <Link to={`/user-profile/${user.username}`}>{user.username}</Link>
+        <Link to={`/user-profile/${user.id}`}>{user.username}</Link>
       </td>
       <td data-label='Name'>{user.name}</td>
       <td data-label='Email'>{user.email}</td>

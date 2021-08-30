@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::get('user-list', [UserController::class, 'index']);
+Route::get('user-profile/{id}', [UserController::class, 'show']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
