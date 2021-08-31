@@ -10,6 +10,7 @@ import UserList from './pages/UserList';
 import UserProfile from './pages/UserProfile';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import UpdateProfile from './pages/UpdateProfile';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -37,7 +38,7 @@ const App = () => {
               <Route path='/categories' component={Category}></Route>
               <Route path='/user-list' component={UserList}></Route>
               <Route path='/user-profile/:userId' component={UserProfile}></Route>
-              <Route path='/update-profile/:userId' component={UserProfile}></Route>
+              <Route path='/edit-profile/:userId' component={UpdateProfile}></Route>
             </div>
           </React.Fragment>
         </Switch>

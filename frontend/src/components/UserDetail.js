@@ -57,7 +57,7 @@ const UserDetail = () => {
           </div>
         </div>
       </div>
-      <Link to={`/update-profile/${userId}`} className='fluid ui blue button mt-4'>Update Profile</Link>
+      <Link to={`/edit-profile/${userId}`} className='fluid ui blue button mt-4'>Update Profile</Link>
     </React.Fragment>
   );
 };

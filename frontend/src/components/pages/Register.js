@@ -12,22 +12,34 @@ const Register = () => {
     password: '',
     error_list: [],
   });
+  const [avatar, setAvatar] = useState([]);
 
   const handleInput = (e) => {
     e.persist();
     setRegister({ ...registerInput, [e.target.name]: e.target.value });
   };
 
+  const handleImage = (e) => {
+    // e.persist();
+    setAvatar({ avatar: e.target.files[0] });
+  };
+
+  console.log(avatar);
+
   const registerSubmit = (e) => {
     e.preventDefault();
+
+    // const formData =  new FormData();
+    // formData.append('avatar', avatar.avatar)
 
     const data = {
       name: registerInput.name,
       username: registerInput.username,
       email: registerInput.email,
       password: registerInput.password,
+      avatar: avatar.avatar,
     };
-    axios.get('/sanctum/csrf-cookie').then((response) => {
+    axios.get('/sanctum/csrf-cookie').then(() => {
       axios.post(`/api/register`, data).then((res) => {
         if (res.data.status === 200) {
           localStorage.setItem('auth_token', res.data.token);
@@ -94,6 +106,17 @@ const Register = () => {
                     value={registerInput.password}
                     onChange={handleInput}
                     placeholder='Password'
+                  />
+                  <span>{registerInput.error_list.password}</span>
+                </div>
+                <div className='ui left icon input mt-5'>
+                  <i className='image icon'></i>
+                  <input
+                    type='file'
+                    name='avatar'
+                    value={avatar.name}
+                    onChange={handleImage}
+                    placeholder='Profile Picture'
                   />
                   <span>{registerInput.error_list.password}</span>
                 </div>
