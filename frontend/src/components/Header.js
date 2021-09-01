@@ -12,8 +12,8 @@ const Header = () => {
         <Link to='/categories' className='item text-lg middle'>
           Categories
         </Link>
-        <Link to='/' className='item text-lg'>
-          Link2
+        <Link to='/user-list' className='item text-lg'>
+          Users
         </Link>
         <Link to='/' className='item text-lg'>
           Link3
