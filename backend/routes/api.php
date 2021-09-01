@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::get('user-list', [UserController::class, 'index']);
 Route::get('user-profile/{id}', [UserController::class, 'show']);
 Route::get('edit-profile/{id}', [UserController::class, 'edit']);
 Route::post('update-profile/{id}', [UserController::class, 'update']);
+
+Route::get('categories', [QuizController::class, 'index']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

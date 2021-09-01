@@ -9,6 +9,12 @@ class Quiz extends Model
 {
     use HasFactory;
 
+    protected $table = 'quizzes';
+    protected $fillable = [
+        'title',
+        'description',
+    ];
+
     public function log()
     {
         return $this->belongsTo(Log::class);
