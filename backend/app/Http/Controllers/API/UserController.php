@@ -102,8 +102,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:191',
             'username' => 'required|max:191',
-            'email' => 'required|email|max:191|unique:users,email',
-            // 'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'email' => 'required|email|max:191',
+            'avatar' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -116,20 +116,22 @@ class UserController extends Controller
                 $user->name = $request->input('name');
                 $user->username = $request->input('username');
                 $user->email = $request->input('email');
-                $user->update();
 
                 if ($request->hasFile('avatar')) {
                     $path = $user->avatar;
-                    if(File::exists($path)) {
+                    if (File::exists($path)) {
                         File::delete($path);
                     }
-                    
-                    $file =  $request->file('avatar');            
+
+                    $file =  $request->file('avatar');
                     $extension = $file->getClientOriginalExtension();
-                    $filename = time() . '_' . $extension;
+                    $userID = $user->id;
+                    $filename = $userID . '_' . time() . '.' . $extension;
                     $file->move('storage/images/', $filename);
                     $user->avatar = $filename;
                 }
+
+                $user->update();
 
                 return response()->json([
                     'status' => 200,

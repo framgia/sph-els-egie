@@ -85,7 +85,7 @@ const UpdateProfile = () => {
                     placeholder='Avatar'
                   />
                 </div>
-                {/* <span>{editInput.error_list.avatar}</span> */}
+                <span>{errorValidation.avatar}</span>
                 <label className='pt-3 text-left'>E-Mail</label>
                 <div className='ui left icon input mt-2'>
                   <i className='mail icon'></i>

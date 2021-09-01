@@ -12,39 +12,27 @@ const Register = () => {
     password: '',
     error_list: [],
   });
-  const [avatar, setAvatar] = useState([]);
 
   const handleInput = (e) => {
     e.persist();
     setRegister({ ...registerInput, [e.target.name]: e.target.value });
   };
 
-  const handleImage = (e) => {
-    // e.persist();
-    setAvatar({ avatar: e.target.files[0] });
-  };
-
-  console.log(avatar);
-
   const registerSubmit = (e) => {
     e.preventDefault();
 
-    // const formData =  new FormData();
-    // formData.append('avatar', avatar.avatar)
+    const formData = new FormData();
+    formData.append('name', registerInput.name);
+    formData.append('username', registerInput.username);
+    formData.append('email', registerInput.email);
+    formData.append('password', registerInput.password);
 
-    const data = {
-      name: registerInput.name,
-      username: registerInput.username,
-      email: registerInput.email,
-      password: registerInput.password,
-      avatar: avatar.avatar,
-    };
     axios.get('/sanctum/csrf-cookie').then(() => {
-      axios.post(`/api/register`, data).then((res) => {
+      axios.post(`/api/register`, formData).then((res) => {
         if (res.data.status === 200) {
           localStorage.setItem('auth_token', res.data.token);
-          history.push('/');
           localStorage.setItem('auth_name', res.data.username);
+          history.push(`/user-profile/${res.data.user.id}`);
         } else {
           setRegister({
             ...registerInput,
@@ -106,17 +94,6 @@ const Register = () => {
                     value={registerInput.password}
                     onChange={handleInput}
                     placeholder='Password'
-                  />
-                  <span>{registerInput.error_list.password}</span>
-                </div>
-                <div className='ui left icon input mt-5'>
-                  <i className='image icon'></i>
-                  <input
-                    type='file'
-                    name='avatar'
-                    value={avatar.name}
-                    onChange={handleImage}
-                    placeholder='Profile Picture'
                   />
                   <span>{registerInput.error_list.password}</span>
                 </div>

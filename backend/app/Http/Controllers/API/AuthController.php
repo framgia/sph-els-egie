@@ -17,7 +17,6 @@ class AuthController extends Controller
             'username' => 'required|max:191',
             'email' => 'required|email|max:191|unique:users,email',
             'password' => 'required|min:8',
-            // 'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -25,12 +24,14 @@ class AuthController extends Controller
                 'validation_errors' => $validator->messages(),
             ]);
         } else {
-            $user = User::create([
-                'name' => $request->name,
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
+
+            $user =  new User;
+            $user->name = $request->input('name');
+            $user->username = $request->input('username');
+            $user->email = $request->input('email');
+            $user->password = Hash::make($request->input('password'));
+
+            $user->save();
 
             $token = $user->createToken($user->email . '_Token')->plainTextToken;
 
@@ -38,7 +39,8 @@ class AuthController extends Controller
                 'status' => 200,
                 'username' => $user->name,
                 'token' => $token,
-                'message' => 'Registered Successfully'
+                'message' => 'Registered Successfully',
+                'user' => $user,
             ]);
         }
     }
