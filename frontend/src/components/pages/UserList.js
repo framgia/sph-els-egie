@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import UserItem from '../UserItem';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -19,16 +19,6 @@ const UserList = () => {
     fetchUsers();
   }, []);
 
-  const userlist_HTMLTABLE = users.map((user) => (
-    <tr key={user.id}>
-      <td data-label='Username'>
-        <Link to={`/user-profile/${user.username}`}>{user.username}</Link>
-      </td>
-      <td data-label='Name'>{user.name}</td>
-      <td data-label='Email'>{user.email}</td>
-    </tr>
-  ));
-
   return (
     <table className='ui striped table'>
       <thead>
@@ -46,7 +36,7 @@ const UserList = () => {
             </td>
           </tr>
         ) : (
-          userlist_HTMLTABLE
+          users.map((user) => <UserItem user={user} key={user.id} />)
         )}
       </tbody>
     </table>
