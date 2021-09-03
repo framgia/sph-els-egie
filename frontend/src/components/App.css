@@ -1,7 +1,51 @@
-.font_weight{
+.font_weight {
   font-weight: 600 !important;
 }
 
-.my-logout-button{
+.my-logout-button {
   margin: 3px 0 !important;
+}
+
+.Answers li {
+  padding: 10px;
+  background-color: #1678c2;
+  color: #fff;
+  margin-top: 15px;
+  font-size: 1.25rem;
+  border-radius: .3rem;
+}
+
+.Answers li:hover {
+  cursor: pointer;
+  background-color: #5cabe7
+}
+
+.Answers .correct{
+  background-color: #16ab39;
+  color: #fff;
+}
+.Answers .incorrect{
+  background-color: #d01919;
+  color: #fff;
+}
+.Answers[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.NextStep[disabled]{
+  display: none;
+}
+
+.finalPage{
+  text-align: center;
+}
+.finalPage h1{
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: Arial,sans-serif;
+  font-weight: bold;
+  color: #1678c2;
+  text-transform: none;
+  text-shadow: none;
 }
