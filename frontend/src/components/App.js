@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './Header';
@@ -9,24 +14,32 @@ import Category from './pages/Category';
 import UserList from './pages/UserList';
 import UserProfile from './pages/UserProfile';
 import Register from './pages/Register';
+import Login from './pages/Login';
 
 axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
-    <div className='ui container'>
+    <div>
       <Router>
+        <Header />
         <Switch>
-          <Route path='/register'>
-            {localStorage.getItem('auth_token') ? <Redirect to ='/' /> : <Register /> }
-          </Route>    
-          <Header />
-          <Route path='/' exact component={Dashboard} />
-          <Route path='/words-learned' component={WordsLearned}></Route>
-          <Route path='/categories' component={Category}></Route>
-          <Route path='/categories' component={Category}></Route>
-          <Route path='/user-list' component={UserList}></Route>
-          <Route path='/user-profile/:id' component={UserProfile}></Route>
+          <React.Fragment>
+            <div className='ui container'>
+              <Route path='/register'>
+                { localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register /> }
+              </Route>
+              <Route path='/login'>
+                { localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login /> }
+              </Route>
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/words-learned' component={WordsLearned}></Route>
+              <Route path='/categories' component={Category}></Route>
+              <Route path='/categories' component={Category}></Route>
+              <Route path='/user-list' component={UserList}></Route>
+              <Route path='/user-profile/:id' component={UserProfile}></Route>
+            </div>
+          </React.Fragment>
         </Switch>
       </Router>
     </div>
