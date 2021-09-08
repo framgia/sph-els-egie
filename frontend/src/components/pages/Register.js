@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import RegisterAPI from '../../apis/RegisterAPI';
 
 const Register = () => {
   const history = useHistory();
@@ -27,19 +27,18 @@ const Register = () => {
       email: registerInput.email,
       password: registerInput.password,
     };
-    axios.get('/sanctum/csrf-cookie').then((response) => {
-      axios.post(`/api/register`, data).then((res) => {
-        if (res.data.status === 200) {
-          localStorage.setItem('auth_token', res.data.token);
-          history.push('/');
-          localStorage.setItem('auth_name', res.data.username);
-        } else {
-          setRegister({
-            ...registerInput,
-            error_list: res.data.validation_errors,
-          });
-        }
-      });
+
+    RegisterAPI.saveRegister(data).then((res) => {
+      if (res.data.status === 200) {
+        localStorage.setItem('auth_token', res.data.token);
+        localStorage.setItem('auth_name', res.data.username);
+        history.push('/');
+      } else {
+        setRegister({
+          ...registerInput,
+          error_list: res.data.validation_errors,
+        });
+      }
     });
   };
 

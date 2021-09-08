@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './Header';
@@ -10,10 +10,6 @@ import UserList from './pages/UserList';
 import UserProfile from './pages/UserProfile';
 import Register from './pages/Register';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.post['Accept'] = 'application/json';
-
 axios.defaults.withCredentials = true;
 
 const App = () => {
@@ -21,7 +17,9 @@ const App = () => {
     <div className='ui container'>
       <Router>
         <Switch>
-          <Route path='/register' exact component={Register} />
+          <Route path='/register'>
+            {localStorage.getItem('auth_token') ? <Redirect to ='/' /> : <Register /> }
+          </Route>    
           <Header />
           <Route path='/' exact component={Dashboard} />
           <Route path='/words-learned' component={WordsLearned}></Route>
