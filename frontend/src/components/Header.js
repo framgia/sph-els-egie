@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import LogoutAPI from '../apis/LogoutAPI';
+import Cookies from 'js-cookie';
 
 const Header = () => {
 
@@ -49,7 +50,7 @@ const Header = () => {
         <Link to='/user-profile' className='item text-xl'>
           User Profile
         </Link>
-        {!localStorage.getItem('auth_token') ? authButtons : logoutButton}
+        {!Cookies.get('auth_token') ? authButtons : logoutButton}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import Header from './Header';
 import Dashboard from './pages/Dashboard';
@@ -27,10 +28,10 @@ const App = () => {
           <React.Fragment>
             <div className='ui container'>
               <Route path='/register'>
-                { localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Register /> }
+                { Cookies.get('auth_token') ? <Redirect to='/' /> : <Register /> }
               </Route>
               <Route path='/login'>
-                { localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login /> }
+                { Cookies.get('auth_token') ? <Redirect to='/' /> : <Login /> }
               </Route>
               <Route path='/' exact component={Dashboard} />
               <Route path='/words-learned' component={WordsLearned}></Route>

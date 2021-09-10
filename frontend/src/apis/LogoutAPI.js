@@ -1,11 +1,12 @@
 import API from './Base';
+import Cookies from 'js-cookie';
 
 const LogoutAPI = () => {
   const logout = () => {
     API.post('/logout').then((res) => {
       if (res.data.status === 200) {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('auth_name');
+        Cookies.remove('auth_token');
+        Cookies.remove('auth_name');
         window.location = '/login';
       }
     });

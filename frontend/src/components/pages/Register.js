@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RegisterAPI from '../../apis/RegisterAPI';
+import Cookies from 'js-cookie';
 
 const Register = () => {
   const history = useHistory();
@@ -30,8 +31,8 @@ const Register = () => {
 
     RegisterAPI.saveRegister(data).then((res) => {
       if (res.data.status === 200) {
-        localStorage.setItem('auth_token', res.data.token);
-        localStorage.setItem('auth_name', res.data.username);
+        Cookies.set('auth_token', res.data.token);
+        Cookies.set('auth_name', res.data.username);
         history.push('/');
       } else {
         setRegister({
