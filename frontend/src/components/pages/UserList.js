@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import UserItem from '../UserItem';
+import UserListAPI from '../../apis/UserListAPI';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchUsers = async () => {
-    const response = await axios.get('http://127.0.0.1:8000/api/user-list');
-
-    if (response.data.status === 200) {
-      setUsers(response.data.users);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchUsers();
+    UserListAPI.displayUsers().then((res) => {
+      if (res.data.status === 200) {
+        setUsers(res.data.users);
+        setLoading(false);
+      }
+    });
   }, []);
 
   return (
