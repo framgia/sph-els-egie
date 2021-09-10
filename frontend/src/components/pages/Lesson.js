@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Question from '../Question';
 import Answer from '../Answer';
+import LessonResult from './LessonResult';
 
 class Lesson extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class Lesson extends React.Component {
         2: 'employee',
         3: 'worker',
         4: 'staff',
-      },  
+      },
       2: {
         1: 'worker',
         2: 'staff',
@@ -66,13 +67,20 @@ class Lesson extends React.Component {
   };
 
   render() {
-    let { questions, answers, correctAnswer, clickedAnswer, step, score } =
-      this.state;
+    let {
+      questions,
+      answers,
+      correctAnswer,
+      clickedAnswer,
+      step,
+      score,
+      correctAnswers,
+    } = this.state;
 
     return (
-      <div className='ui grid center aligned'>
+      <React.Fragment>
         {step <= Object.keys(questions).length ? (
-          <React.Fragment>
+          <div className='ui grid center aligned'>
             <div className='eight wide column mt-10'>
               <div className='text-xl'>Basic 500</div>
               <div className='h-full flex justify-center'>
@@ -81,7 +89,9 @@ class Lesson extends React.Component {
             </div>
 
             <div className='eight wide column mt-10'>
-              <div className='text-xl text-right'>{step} of {Object.keys(questions).length}</div>
+              <div className='text-xl text-right'>
+                {step} of {Object.keys(questions).length}
+              </div>
               <Answer
                 answer={answers[step]}
                 step={step}
@@ -102,17 +112,16 @@ class Lesson extends React.Component {
                 Next
               </button>
             </div>
-          </React.Fragment>
-        ) : (
-          <div className='finalPage'>
-            <h1>You have completed the quiz!</h1>
-            <p className='text-xl'>
-              Result: {score} of {Object.keys(questions).length}
-            </p>
-            <p>Thank you!</p>
           </div>
+        ) : (
+          <LessonResult
+            score={score}
+            questions={questions}
+            correctAnswers={correctAnswers}
+            answers={answers}
+          />
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

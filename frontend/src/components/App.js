@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import UpdateProfile from './pages/UpdateProfile';
 import Lesson from './pages/Lesson';
+import LessonResult from './pages/LessonResult';
 
 axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -41,6 +42,7 @@ const App = () => {
               <Route path='/user-profile/:userId' component={UserProfile}></Route>
               <Route path='/edit-profile/:userId' component={UpdateProfile}></Route>
               <Route path='/lesson/:userId' component={Lesson}></Route>
+              <Route path='/lesson-result/' component={LessonResult}></Route>
             </div>
           </React.Fragment>
         </Switch>
